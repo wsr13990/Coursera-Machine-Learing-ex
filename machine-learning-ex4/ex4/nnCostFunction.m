@@ -81,6 +81,32 @@ J = J+lambda/(2*m)*(sum(sum(Theta1temp.^2)) + sum(sum(Theta2temp.^2)));
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+for (t = 1:m)
+  %Step 1
+    %Perform Forward Propagation
+      %Input Layer
+      a1 = X(t, :);
+      a1 = [1,a1];
+      %Hidden Layer
+      z2 = a1(t,:)*Theta1';%(1*hidden_layer_size)
+      a2temp = sigmoid(z2);
+      a2 = [ones(size(z2,1),1), a2temp];%(1*hidden_layer_size+1)      
+      %Output Layer
+      z3 = [1, a2]*Theta2';%(1*num_labels)
+      a3 = sigmoid(z3);
+      p = a3;
+  %Step 2
+    y_array = 1:num_labels;
+    y_array == y(t,:);
+    delta3 = p - y_array;%(1*num_labels)
+  %Step3
+    delta2 = Theta2'*delta3'.*sigmoid(z2)';%(hidden_layer_size+1*1)
+  %Step4
+    Delta = Delta + delta3*a2'     
+end;
+  %Step5
+  gradient = Delta/m
+
 %
 % Part 3: Implement regularization with the cost function and gradients.
 %
