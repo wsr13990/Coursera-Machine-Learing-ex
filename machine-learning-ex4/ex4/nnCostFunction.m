@@ -61,6 +61,11 @@ P = p(i,:);
 J = J+(1/m.*sum((-Yvect*log(P)')-((1-Yvect)*log(1.-P)')));
 end
 
+Theta1temp = [zeros(size(Theta1,1),1),Theta1(:,2:(input_layer_size+1))];
+Theta2temp = [zeros(size(Theta2,1),1),Theta2(:,2:(hidden_layer_size+1))];
+
+J = J+lambda/(2*m)*(sum(sum(Theta1temp.^2)) + sum(sum(Theta2temp.^2)));
+
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
