@@ -38,11 +38,6 @@ Theta2_grad = zeros(size(Theta2));
 %         variable J. After implementing Part 1, you can verify that your
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
-%a = 1:num_labels;
-%Y = zeros(m,num_labels);
-%for (i = 1:m)
-%Y(i,:)=(a ==y(i,:));
-%end
 
 %Input Layer
 a1 = [ones(size(X,1),1) X];%(m*n+1)
