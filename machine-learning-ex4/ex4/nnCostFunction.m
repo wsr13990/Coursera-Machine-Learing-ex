@@ -54,22 +54,16 @@ a2 = [ones(size(z2,1),1), a2temp];
 
 %Output Layer
 z3 = a2*Theta2';
-a3temp = sigmoid(z3);
-[x,xi] = max(a3temp, [], 2);
-%a3temp = xi;
-%a3 = 1:num_labels;
-%a3 = a3 == a3temp;
-a3 = xi;
+a3 = sigmoid(z3);
 p = a3;
 
 
 Y = y;
 for (i = 1:m)
 Yvect = 1:num_labels;
-Yvect = Yvect ==Y(i,:);
-pvect = 1:num_labels;
-pvect = pvect ==p(i,:);
-J = J+(1/m.*sum((-Yvect'*log(pvect))-((1-Yvect)'*log(1.-pvect))));
+Yvect = Yvect ==y(i,:);
+P = p(i,:);
+J = J+(1/m.*sum((-Yvect*log(P)')-((1-Yvect)*log(1.-P)')));
 end
 
 %
