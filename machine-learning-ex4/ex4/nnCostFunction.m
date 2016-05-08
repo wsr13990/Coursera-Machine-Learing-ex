@@ -97,7 +97,7 @@ for (t = 1:m)
       p = a3;
   %Step 2
     y_array = 1:num_labels;
-    y_array == y(t,:);
+    y_array = y_array == y(t,:);
     Delta3 = p-y_array;%(1*num_labels)
   %Step3
     Delta2 = Theta2'*Delta3'.*a2';%(hidden_layer_size+1*1)
