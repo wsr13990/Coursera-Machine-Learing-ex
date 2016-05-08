@@ -105,10 +105,11 @@ for (t = 1:m)
     Delta = 0;
     %Delta = Delta+ sum(sum(Theta1_grad(2:end,1))) + sum(sum(Theta2_grad));
     %Delta = Delta+ sum(Theta2_grad'*a2)+ sum(Theta1_grad(2:end,:)*a1);
-    Delta3
-    Delta2
+    size(a2)
+    Theta2_grad = Theta2_grad+Delta3'*a2;
 end;
   %Step5
+  Theta2_grad
   grad = Delta/m;
   
 %
