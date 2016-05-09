@@ -29,6 +29,10 @@ m = size(X, 1);
 J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
+Delta2 = zeros(size(Theta2));
+Delta1 = zeros(size(Theta1));
+D3 = zeros(m,num_labels);
+D2 = zeros(m,hidden_layer_size)
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
@@ -98,19 +102,19 @@ for (t = 1:m)
   %Step 2
     y_array = 1:num_labels;
     y_array = y_array == y(t,:);
-    Delta3 = p-y_array;%(1*num_labels)
+    d3 = p-y_array;%(1*num_labels)
   %Step3
-    Delta2 = Theta2'*Delta3'.*a2';%(hidden_layer_size+1*1)
+    d2 = d3*Theta2(:,2:end).*sigmoidGradient(z2);%(hidden_layer_size+1*1)
   %Step4
-    Delta = 0;
-    %Delta = Delta+ sum(sum(Theta1_grad(2:end,1))) + sum(sum(Theta2_grad));
-    %Delta = Delta+ sum(Theta2_grad'*a2)+ sum(Theta1_grad(2:end,:)*a1);
-    size(a2)
-    Theta2_grad = Theta2_grad+Delta3'*a2;
+    D3(t,:) = d3;
+    D2(t,:) = d2;
+    Delta2 = Delta2.+(d3'*a2);
+    Delta1 = Delta1.+d2'*a1;
+    %Theta1_grad = Theta1_grad+Delta2'*a1;
 end;
   %Step5
-  Theta2_grad
-  grad = Delta/m;
+  Theta2_grad = Delta2/m;
+  Theta1_grad = Delta1/m;
   
 %
 % Part 3: Implement regularization with the cost function and gradients.
