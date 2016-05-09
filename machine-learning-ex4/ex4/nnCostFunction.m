@@ -32,7 +32,7 @@ Theta2_grad = zeros(size(Theta2));
 Delta2 = zeros(size(Theta2));
 Delta1 = zeros(size(Theta1));
 D3 = zeros(m,num_labels);
-D2 = zeros(m,hidden_layer_size)
+D2 = zeros(m,hidden_layer_size);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
@@ -110,7 +110,6 @@ for (t = 1:m)
     D2(t,:) = d2;
     Delta2 = Delta2.+(d3'*a2);
     Delta1 = Delta1.+d2'*a1;
-    %Theta1_grad = Theta1_grad+Delta2'*a1;
 end;
   %Step5
   Theta2_grad = Delta2/m;
@@ -124,10 +123,10 @@ end;
 %               the regularization separately and then add them to Theta1_grad
 %               and Theta2_grad from Part 2.
 %
-
-
-
-
+Theta2temp = [zeros(size(Theta2,1),1),Theta2(:,2:end)];
+Theta1temp = [zeros(size(Theta1,1),1),Theta1(:,2:end)];
+Theta2_grad = Delta2/m+(Theta2temp.*(lambda/m));
+Theta1_grad = Delta1/m+(Theta1temp.*(lambda/m));
 
 
 
