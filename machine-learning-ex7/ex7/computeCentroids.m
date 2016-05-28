@@ -25,7 +25,13 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
-
+totalCentroidValue = zeros(K,n);
+c = zeros(K,1);
+for (j =1:m)
+totalCentroidValue(idx(j),:)=(totalCentroidValue(idx(j),:)+X(j,:))
+c(idx(j)) = c(idx(j))+1;
+end
+centroids = totalCentroidValue./c;
 
 
 
