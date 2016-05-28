@@ -28,7 +28,7 @@ centroids = zeros(K, n);
 totalCentroidValue = zeros(K,n);
 c = zeros(K,1);
 for (j =1:m)
-totalCentroidValue(idx(j),:)=(totalCentroidValue(idx(j),:)+X(j,:))
+totalCentroidValue(idx(j),:)=(totalCentroidValue(idx(j),:)+X(j,:));
 c(idx(j)) = c(idx(j))+1;
 end
 centroids = totalCentroidValue./c;

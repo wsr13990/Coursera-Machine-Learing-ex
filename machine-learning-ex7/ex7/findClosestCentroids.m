@@ -29,9 +29,8 @@ for(i = 1:m)
   end
   [x,xi] = min((J));
   idx(i) = xi;
-  J
 end
-idx
+idx;
 
 
 
